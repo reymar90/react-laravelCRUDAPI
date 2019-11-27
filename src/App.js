@@ -9,16 +9,10 @@ class App extends Component {
 		super();
 		this.state = {
 			users: []
-			
 		}
-	
 	}
 
-	// handleSubmit = users => {
-    //     this.setState({characters: [...this.state.characters, character]});
-    // }
-
-	componentDidMount() {
+	componentDidMount(){
        
 		axios.get('http://127.0.0.1:8000/api/user')
 		 .then(response => {
@@ -27,16 +21,17 @@ class App extends Component {
 			 this.setState({
 				users:response.data.data
 			 });
-			 // console.log(response.data.data.first_name, contact_number, address);
-			 
+			
 		 })
 		 .catch(error => {
 			 console.log(error);
 		 });
-		 
 	 }
-	
-	
+
+
+	 handleSubmit = user => {
+        this.setState({users: [...this.state.users, user]});
+    }
 	render(){
 
 	return(
@@ -45,9 +40,10 @@ class App extends Component {
 		<thead>
 			<tr>
 				<th>First Name</th>
-				<th>last Name</th>
+				<th>Last Name</th>
 				<th>Age</th>
 				<th>Email</th>
+				<th>Contact Number</th>
 				<th>Address</th>
 				<th>Actions</th>
 			</tr>
@@ -60,6 +56,7 @@ class App extends Component {
 				<td>{value.last_name}</td>
 				<td>{value.age}</td>
 				<td>{value.email}</td>
+				<td>{value.contact_number}</td>
 				<td>{value.address}</td>
 				<td>
 				<button
@@ -81,7 +78,7 @@ class App extends Component {
 
 		
 	</table>
-	<AddUserForm/>
+	<AddUserForm  handleSubmit={this.handleSubmit}/>
 </div>
 		
 
@@ -90,7 +87,5 @@ class App extends Component {
 	}
 	
 }
-
-
 
 export default App
