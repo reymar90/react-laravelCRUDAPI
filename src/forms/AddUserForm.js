@@ -10,25 +10,20 @@ constructor(props) {
         // this.state = this.initialState;
         this.handleChange = this.handleChange.bind(this)
         this.onFormSubmit = this.onFormSubmit.bind(this)
-
 	}
+
 	handleChange = event => {
         let name = event.target.name
         let value =  event.target.value
         let obj = this.state.users;
+       
         obj[name] = value;
         this.setState({ users:obj});
 
-        // const { name, value } = event.target;
-        // this.setState({
-        //     [name] : value
-        // });
-        // console.log(this.handleChange);
     }
 
     onFormSubmit = (event) => {
    
-        event.preventDefault();
         let obj = Object.assign({}, this.state.users);
     
         axios.post('http://127.0.0.1:8000/api/user', obj)
@@ -40,12 +35,7 @@ constructor(props) {
            });
   
           })
-  
     }
-
-   
-
-
 	render(){
 		// const { first_name, last_name, age, email, contact_number, address } = this.state; 
 		 return (
@@ -93,9 +83,6 @@ constructor(props) {
         );
 	}
 
-	
-
-	
 }
 
 export default AddUserForm

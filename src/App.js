@@ -16,18 +16,15 @@ class App extends Component {
        
 		axios.get('http://127.0.0.1:8000/api/user')
 		 .then(response => {
-			console.log(this.state.users);
-
 			 this.setState({
 				users:response.data.data
+				
 			 });
-			
 		 })
 		 .catch(error => {
 			 console.log(error);
 		 });
 	 }
-
 
 	 handleSubmit = user => {
         this.setState({users: [...this.state.users, user]});
@@ -75,14 +72,10 @@ class App extends Component {
 			</tr>
 		)}
 		</tbody>
-
-		
+	
 	</table>
 	<AddUserForm  handleSubmit={this.handleSubmit}/>
 </div>
-		
-
-
 		)
 	}
 	
